@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrícula — Genius Idiomas</title>
+  <meta name="description" content="Formulario de matrícula en línea - Genius Idiomas">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__logo">G</div>
+    <div>
+      <div class="header__title">Genius Idiomas</div>
+      <div class="header__subtitle">Formulario de Matrícula</div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Progress -->
+    <div class="progress" id="progress">
+      <div class="progress__step">
+        <div class="progress__circle active" data-step="1">1</div>
+      </div>
+      <div class="progress__line" data-line="1"></div>
+      <div class="progress__step">
+        <div class="progress__circle" data-step="2">2</div>
+      </div>
+      <div class="progress__line" data-line="2"></div>
+      <div class="progress__step">
+        <div class="progress__circle" data-step="3">3</div>
+      </div>
+      <div class="progress__line" data-line="3"></div>
+      <div class="progress__step">
+        <div class="progress__circle" data-step="4">4</div>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert alert-error" id="alertError"></div>
+
+    <!-- Step 1: Datos Personales -->
+    <section class="card" id="step1">
+      <h2 class="card__title">Datos Personales</h2>
+      <p class="card__desc">Ingresa tus datos para iniciar el proceso de matrícula.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombres <span class="required">*</span></label>
+          <input type="text" id="nombres" placeholder="Ej: Juan Carlos" required>
+          <div class="error-msg" id="err-nombres">Este campo es obligatorio</div>
+        </div>
+        <div class="form-group">
+          <label>Apellidos <span class="required">*</span></label>
+          <input type="text" id="apellidos" placeholder="Ej: García López" required>
+          <div class="error-msg" id="err-apellidos">Este campo es obligatorio</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Correo Electrónico <span class="required">*</span></label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+        <div class="error-msg" id="err-email">Ingresa un correo válido</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono <span class="required">*</span></label>
+          <input type="tel" id="telefono" placeholder="+502 1234-5678" required>
+          <div class="error-msg" id="err-telefono">Ingresa un teléfono válido</div>
+        </div>
+        <div class="form-group">
+          <label>Tipo de Documento</label>
+          <select id="tipoDocumento">
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="TI">Tarjeta de Identidad</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="PA">Pasaporte</option>
+            <option value="DPI">DPI (Guatemala)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Número de Documento <span class="required">*</span></label>
+          <input type="text" id="numDocumento" placeholder="Número de identificación" required>
+          <div class="error-msg" id="err-numDocumento">Este campo es obligatorio</div>
+        </div>
+        <div class="form-group">
+          <label>Nacionalidad</label>
+          <select id="nacionalidad">
+            <option value="Guatemalteca">Guatemalteca</option>
+            <option value="Hondureña">Hondureña</option>
+            <option value="Salvadoreña">Salvadoreña</option>
+            <option value="Costarricense">Costarricense</option>
+            <option value="Nicaragüense">Nicaragüense</option>
+            <option value="Panameña">Panameña</option>
+            <option value="Mexicana">Mexicana</option>
+            <option value="Colombiana">Colombiana</option>
+            <option value="Brasileña">Brasileña</option>
+            <option value="Otra">Otra</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <div></div>
+        <button class="btn btn-primary" onclick="nextStep(1)">
+          Continuar →
+        </button>
+      </div>
+    </section>
+
+    <!-- Step 2: Programa -->
+    <section class="card hidden" id="step2">
+      <h2 class="card__title">Selecciona tu Programa</h2>
+      <p class="card__desc">Elige el programa y período académico de tu interés.</p>
+
+      <div class="form-group">
+        <label>Programa Académico <span class="required">*</span></label>
+        <select id="programa">
+          <option value="">Cargando programas...</option>
+        </select>
+        <div class="error-msg" id="err-programa">Selecciona un programa</div>
+      </div>
+
+      <div class="form-group">
+        <label>Período Académico <span class="required">*</span></label>
+        <select id="periodo">
+          <option value="">Cargando períodos...</option>
+        </select>
+        <div class="error-msg" id="err-periodo">Selecciona un período</div>
+      </div>
+
+      <div class="form-group">
+        <label>Sede</label>
+        <select id="sede">
+          <option value="">Cargando sedes...</option>
+        </select>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevStep(2)">
+          ← Atrás
+        </button>
+        <button class="btn btn-primary" onclick="nextStep(2)">
+          Continuar →
+        </button>
+      </div>
+    </section>
+
+    <!-- Step 3: Confirmación -->
+    <section class="card hidden" id="step3">
+      <h2 class="card__title">Confirmación</h2>
+      <p class="card__desc">Revisa tus datos antes de confirmar la matrícula.</p>
+
+      <table class="summary-table" id="summaryTable">
+        <!-- Filled by JS -->
+      </table>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevStep(3)">
+          ← Atrás
+        </button>
+        <button class="btn btn-success" id="btnSubmit" onclick="submitEnrollment()">
+          ✓ Confirmar Matrícula
+        </button>
+      </div>
+    </section>
+
+    <!-- Step 4: Pago -->
+    <section class="card hidden" id="step4">
+      <div class="payment-box" id="paymentBox">
+        <!-- Filled by JS on success -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="spinner-lg"></div>
+      <p>Procesando tu matrícula...</p>
+      <div class="loading-step" id="loadingStep">Creando tu perfil de contacto</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © 2026 <a href="https://geniusidiomas.com" target="_blank">Genius Idiomas</a>. Todos los derechos reservados.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
