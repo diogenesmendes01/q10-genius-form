@@ -92,9 +92,20 @@ async function reportTrackingStatus(status) {
 }
 
 // ─── Navigation ───
-function showStep(step) {
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById(`step${i}`).classList.toggle('hidden', i !== step);
+function showStep(step, direction) {
+  for (let i = 1; i <= 5; i++) {
+    const section = document.getElementById(`step${i}`);
+    section.classList.remove('card--enter-right', 'card--enter-left');
+    if (i === step) {
+      section.classList.remove('hidden');
+      if (direction === 'forward') {
+        section.classList.add('card--enter-right');
+      } else if (direction === 'back') {
+        section.classList.add('card--enter-left');
+      }
+    } else {
+      section.classList.add('hidden');
+    }
   }
   updateProgress(step);
   currentStep = step;
@@ -102,7 +113,7 @@ function showStep(step) {
 }
 
 function updateProgress(step) {
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 5; i++) {
     const circle = document.querySelector(`.progress__circle[data-step="${i}"]`);
     circle.classList.remove('active', 'completed');
 
@@ -117,7 +128,7 @@ function updateProgress(step) {
     }
   }
 
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 4; i++) {
     const line = document.querySelector(`.progress__line[data-line="${i}"]`);
     line.classList.toggle('completed', i < step);
   }
@@ -127,16 +138,16 @@ function nextStep(current) {
   hideError();
   if (!validateStep(current)) return;
 
-  if (current === 2) {
+  if (current === 3) {
     buildSummary();
   }
 
-  showStep(current + 1);
+  showStep(current + 1, 'forward');
 }
 
 function prevStep(current) {
   hideError();
-  showStep(current - 1);
+  showStep(current - 1, 'back');
 }
 
 // ─── Validation ───
@@ -150,13 +161,21 @@ function validateStep(step) {
     if (!val('apellidos')) { showFieldError('apellidos'); valid = false; }
     if (!valEmail('email')) { showFieldError('email'); valid = false; }
     if (!val('telefono')) { showFieldError('telefono'); valid = false; }
-    if (!val('numDocumento')) { showFieldError('numDocumento'); valid = false; }
 
     if (!valid) showError('Por favor completa todos los campos obligatorios.');
     return valid;
   }
 
   if (step === 2) {
+    let valid = true;
+
+    if (!val('numDocumento')) { showFieldError('numDocumento'); valid = false; }
+
+    if (!valid) showError('Por favor ingresa tu número de documento.');
+    return valid;
+  }
+
+  if (step === 3) {
     let valid = true;
 
     if (!val('programa')) { showFieldError('programa'); valid = false; }
@@ -300,7 +319,7 @@ async function submitEnrollment() {
 
     enrollmentResult = result;
     showPaymentStep(result);
-    showStep(4);
+    showStep(5, 'forward');
 
     // Update tracking
     reportTrackingStatus('filled');
