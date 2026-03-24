@@ -7,18 +7,32 @@
   <meta name="description" content="Formulario de matrícula en línea - Genius Idiomas">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 </head>
 <body>
 
+  <!-- Decorative background elements -->
+  <div class="bg-decoration" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+    <div class="bg-wave"></div>
+  </div>
+
   <!-- Header -->
   <header class="header">
-    <div class="header__logo">G</div>
-    <div>
-      <div class="header__title">Genius Idiomas</div>
-      <div class="header__subtitle">Formulario de Matrícula</div>
+    <div class="header__pattern" aria-hidden="true"></div>
+    <div class="header__content">
+      <div class="header__logo">
+        <span class="header__logo-letter">G</span>
+        <div class="header__logo-ring"></div>
+      </div>
+      <div>
+        <div class="header__title">Genius Idiomas</div>
+        <div class="header__subtitle">Formulario de Matrícula</div>
+      </div>
     </div>
   </header>
 
@@ -29,18 +43,22 @@
     <div class="progress" id="progress">
       <div class="progress__step">
         <div class="progress__circle active" data-step="1">1</div>
+        <span class="progress__label">Datos</span>
       </div>
       <div class="progress__line" data-line="1"></div>
       <div class="progress__step">
         <div class="progress__circle" data-step="2">2</div>
+        <span class="progress__label">Programa</span>
       </div>
       <div class="progress__line" data-line="2"></div>
       <div class="progress__step">
         <div class="progress__circle" data-step="3">3</div>
+        <span class="progress__label">Revisión</span>
       </div>
       <div class="progress__line" data-line="3"></div>
       <div class="progress__step">
         <div class="progress__circle" data-step="4">4</div>
+        <span class="progress__label">¡Listo!</span>
       </div>
     </div>
 
@@ -49,136 +67,182 @@
 
     <!-- Step 1: Datos Personales -->
     <section class="card" id="step1">
-      <h2 class="card__title">Datos Personales</h2>
-      <p class="card__desc">Ingresa tus datos para iniciar el proceso de matrícula.</p>
+      <div class="card__header">
+        <div class="card__icon">👤</div>
+        <div>
+          <h2 class="card__title">Datos Personales</h2>
+          <p class="card__desc">Ingresa tus datos para iniciar el proceso de matrícula.</p>
+        </div>
+      </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Nombres <span class="required">*</span></label>
+          <label for="nombres">Nombres <span class="required">*</span></label>
           <input type="text" id="nombres" placeholder="Ej: Juan Carlos" required>
           <div class="error-msg" id="err-nombres">Este campo es obligatorio</div>
         </div>
         <div class="form-group">
-          <label>Apellidos <span class="required">*</span></label>
+          <label for="apellidos">Apellidos <span class="required">*</span></label>
           <input type="text" id="apellidos" placeholder="Ej: García López" required>
           <div class="error-msg" id="err-apellidos">Este campo es obligatorio</div>
         </div>
       </div>
 
       <div class="form-group">
-        <label>Correo Electrónico <span class="required">*</span></label>
+        <label for="email">Correo Electrónico <span class="required">*</span></label>
         <input type="email" id="email" placeholder="tu@email.com" required>
         <div class="error-msg" id="err-email">Ingresa un correo válido</div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Teléfono <span class="required">*</span></label>
+          <label for="telefono">Teléfono <span class="required">*</span></label>
           <input type="tel" id="telefono" placeholder="+502 1234-5678" required>
           <div class="error-msg" id="err-telefono">Ingresa un teléfono válido</div>
         </div>
         <div class="form-group">
-          <label>Tipo de Documento</label>
-          <select id="tipoDocumento">
-            <option value="CC">Cédula de Ciudadanía</option>
-            <option value="TI">Tarjeta de Identidad</option>
-            <option value="CE">Cédula de Extranjería</option>
-            <option value="PA">Pasaporte</option>
-            <option value="DPI">DPI (Guatemala)</option>
-          </select>
+          <label for="tipoDocumento">Tipo de Documento</label>
+          <div class="select-wrapper">
+            <select id="tipoDocumento">
+              <option value="CC">Cédula de Ciudadanía</option>
+              <option value="TI">Tarjeta de Identidad</option>
+              <option value="CE">Cédula de Extranjería</option>
+              <option value="PA">Pasaporte</option>
+              <option value="DPI">DPI (Guatemala)</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Número de Documento <span class="required">*</span></label>
+          <label for="numDocumento">Número de Documento <span class="required">*</span></label>
           <input type="text" id="numDocumento" placeholder="Número de identificación" required>
           <div class="error-msg" id="err-numDocumento">Este campo es obligatorio</div>
         </div>
         <div class="form-group">
-          <label>Nacionalidad</label>
-          <select id="nacionalidad">
-            <option value="Guatemalteca">Guatemalteca</option>
-            <option value="Hondureña">Hondureña</option>
-            <option value="Salvadoreña">Salvadoreña</option>
-            <option value="Costarricense">Costarricense</option>
-            <option value="Nicaragüense">Nicaragüense</option>
-            <option value="Panameña">Panameña</option>
-            <option value="Mexicana">Mexicana</option>
-            <option value="Colombiana">Colombiana</option>
-            <option value="Brasileña">Brasileña</option>
-            <option value="Otra">Otra</option>
-          </select>
+          <label for="nacionalidad">Nacionalidad</label>
+          <div class="select-wrapper">
+            <select id="nacionalidad">
+              <option value="Guatemalteca">Guatemalteca</option>
+              <option value="Hondureña">Hondureña</option>
+              <option value="Salvadoreña">Salvadoreña</option>
+              <option value="Costarricense">Costarricense</option>
+              <option value="Nicaragüense">Nicaragüense</option>
+              <option value="Panameña">Panameña</option>
+              <option value="Mexicana">Mexicana</option>
+              <option value="Colombiana">Colombiana</option>
+              <option value="Brasileña">Brasileña</option>
+              <option value="Otra">Otra</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div class="btn-group">
         <div></div>
         <button class="btn btn-primary" onclick="nextStep(1)">
-          Continuar →
+          <span>Continuar</span>
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     </section>
 
     <!-- Step 2: Programa -->
     <section class="card hidden" id="step2">
-      <h2 class="card__title">Selecciona tu Programa</h2>
-      <p class="card__desc">Elige el programa y período académico de tu interés.</p>
+      <div class="card__header">
+        <div class="card__icon">📚</div>
+        <div>
+          <h2 class="card__title">Selecciona tu Programa</h2>
+          <p class="card__desc">Elige el programa y período académico de tu interés.</p>
+        </div>
+      </div>
 
       <div class="form-group">
-        <label>Programa Académico <span class="required">*</span></label>
-        <select id="programa">
-          <option value="">Cargando programas...</option>
-        </select>
+        <label for="programa">Programa Académico <span class="required">*</span></label>
+        <div class="select-wrapper">
+          <select id="programa">
+            <option value="">Cargando programas...</option>
+          </select>
+        </div>
         <div class="error-msg" id="err-programa">Selecciona un programa</div>
       </div>
 
       <div class="form-group">
-        <label>Período Académico <span class="required">*</span></label>
-        <select id="periodo">
-          <option value="">Cargando períodos...</option>
-        </select>
+        <label for="periodo">Período Académico <span class="required">*</span></label>
+        <div class="select-wrapper">
+          <select id="periodo">
+            <option value="">Cargando períodos...</option>
+          </select>
+        </div>
         <div class="error-msg" id="err-periodo">Selecciona un período</div>
       </div>
 
       <div class="form-group">
-        <label>Sede</label>
-        <select id="sede">
-          <option value="">Cargando sedes...</option>
-        </select>
+        <label for="sede">Sede</label>
+        <div class="select-wrapper">
+          <select id="sede">
+            <option value="">Cargando sedes...</option>
+          </select>
+        </div>
       </div>
 
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="prevStep(2)">
-          ← Atrás
+          <svg class="btn__arrow btn__arrow--back" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Atrás</span>
         </button>
         <button class="btn btn-primary" onclick="nextStep(2)">
-          Continuar →
+          <span>Continuar</span>
+          <svg class="btn__arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     </section>
 
     <!-- Step 3: Confirmación -->
     <section class="card hidden" id="step3">
-      <h2 class="card__title">Confirmación</h2>
-      <p class="card__desc">Revisa tus datos antes de confirmar la matrícula.</p>
+      <div class="card__header">
+        <div class="card__icon">✅</div>
+        <div>
+          <h2 class="card__title">Confirmación</h2>
+          <p class="card__desc">Revisa tus datos antes de confirmar la matrícula.</p>
+        </div>
+      </div>
 
-      <table class="summary-table" id="summaryTable">
-        <!-- Filled by JS -->
-      </table>
+      <div class="summary-wrapper">
+        <table class="summary-table" id="summaryTable">
+          <!-- Filled by JS -->
+        </table>
+      </div>
 
       <div class="btn-group">
         <button class="btn btn-secondary" onclick="prevStep(3)">
-          ← Atrás
+          <svg class="btn__arrow btn__arrow--back" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M16 10H4m0 0l4-4m-4 4l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Atrás</span>
         </button>
         <button class="btn btn-success" id="btnSubmit" onclick="submitEnrollment()">
-          ✓ Confirmar Matrícula
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Confirmar Matrícula</span>
         </button>
       </div>
     </section>
 
     <!-- Step 4: Pago -->
     <section class="card hidden" id="step4">
+      <div class="celebration" aria-hidden="true">
+        <div class="confetti confetti--1"></div>
+        <div class="confetti confetti--2"></div>
+        <div class="confetti confetti--3"></div>
+        <div class="confetti confetti--4"></div>
+        <div class="confetti confetti--5"></div>
+        <div class="confetti confetti--6"></div>
+        <div class="confetti confetti--7"></div>
+        <div class="confetti confetti--8"></div>
+        <div class="confetti confetti--9"></div>
+        <div class="confetti confetti--10"></div>
+        <div class="confetti confetti--11"></div>
+        <div class="confetti confetti--12"></div>
+      </div>
       <div class="payment-box" id="paymentBox">
         <!-- Filled by JS on success -->
       </div>
