@@ -1225,3 +1225,77 @@ body {
     background: white;
   }
 }
+
+/* ─── Header Redesign (v2) ─── */
+.header__text {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header__title {
+  font-family: 'Fraunces', Georgia, serif;
+  color: white;
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.header__accent {
+  color: var(--accent-300);
+}
+
+.header__subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Fix header content for centered text */
+.header__content {
+  justify-content: center;
+}
+
+/* ─── Card Icon SVG styling ─── */
+.card__icon {
+  color: var(--primary-600);
+}
+
+.card__icon svg {
+  display: block;
+}
+
+/* ─── Progress 5-step mobile fix ─── */
+@media (max-width: 479px) {
+  .progress__line {
+    width: 18px;
+  }
+  
+  .progress__circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .progress__label {
+    font-size: 0.58rem;
+    max-width: 48px;
+    line-height: 1.2;
+  }
+
+  .header__title {
+    font-size: 1.4rem;
+  }
+}
+
+/* ─── Helper text ─── */
+.helper-text {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 0.25rem;
+  padding-left: 2px;
+}
